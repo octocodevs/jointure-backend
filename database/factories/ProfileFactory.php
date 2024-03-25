@@ -25,7 +25,7 @@ class ProfileFactory extends Factory
             'values' => $this->faker->optional()->realText(255), 
             'business_size' => $this->faker->randomElement(['micro empresa', 'pequeña empresa', 'mediana empresa', 'gran empresa']),
             'market' => $this->faker->optional()->randomElement(['Local', 'Comarcal', 'Provincial', 'Autonómico', 'Nacional', 'Internacional']), 
-            'clients' => $this->faker->randomElement(['B2B', 'B2C']),
+            'clients' => $this->faker->randomElement(['B2B', 'B2C', 'B2B y B2C']),
             'sales_channels' => $this->faker->randomElement(['online', 'offline']),
             'description' => $this->faker->optional()->realText(500), 
         ];
