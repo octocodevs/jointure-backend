@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'position'=>fake()->name(),
             'profile_type' => fake()->randomElement(['agencia', 'freelance', 'empresa']),
             'country' => fake()->country(),
-            'business_name'=>fake()->name(),
+            'business_name'=>fake()->company(),
             'subscription_type' => fake()->randomElement(['basic']),
         ];
     }
