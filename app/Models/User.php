@@ -12,33 +12,38 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'position',
+        'profile_type',
+        'country',
+        'business_name',
+        'subscription_type',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password'=>'required|string|confirmed|min:8',
+        'position'=>'required|string|max:255',
+        'profile_type' => 'required|in:agencia,freelance,empresa',
+        'country' => 'nullable|string|max:255',
+        'business_name'=>'required|string|max:255',
+        'subscription_type' => 'nullable|in:basic,professional,business',
+    ];
+
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
 }
