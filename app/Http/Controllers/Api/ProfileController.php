@@ -1,45 +1,41 @@
 <?php
-
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Profile;
 class ProfileController extends Controller
 {
-
-    public function index()
+    
+    public function show(Request $request)
     {
-        //
+        $user = $request->user();
+        $profile = $user->profile()->first();
+        return response()->json($profile, 200);
     }
-
-
-    public function store(Request $request)
+    
+    public function storeOrUpdate(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $user = $request->user();
+        $profileData = $request->only([
+            'CIF',
+            'legal_structure',
+            'sector',
+            'activity',
+            'offer',
+            'values',
+            'business_size',
+            'market',
+            'clients',
+            'sales_channels',
+            'description',
+        ]);
+        if ($user->profile()->exists()) {
+            
+            $user->profile()->update($profileData);
+        } else {
+            
+            $user->profile()->create($profileData);
+        }
+        return response()->json(['message' => 'Profile saved/updated successfully'], 200);
     }
 }
