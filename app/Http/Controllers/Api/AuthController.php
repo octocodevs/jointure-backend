@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    
+
     public function register(Request $request): JsonResponse
     {
         try {
@@ -35,7 +35,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Failed to register user', 'error' => $e->getMessage()], 500);
         }
     }
-   
+
     public function login(Request $request): JsonResponse
     {
         $request->validate(['email'=>'required|email','password'=>'required']);
@@ -54,7 +54,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Session closed successfully.'
-        ], 204);
+        ], 201);
     }
 }
 
