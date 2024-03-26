@@ -20,7 +20,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
-            'position'=>fake()->name(),
+            'position'=>fake()->jobTitle(),
             'profile_type' => fake()->randomElement(['agencia', 'freelance', 'empresa']),
             'country' => fake()->country(),
             'business_name'=>fake()->company(),
