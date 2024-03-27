@@ -28,6 +28,10 @@ class ProfileController extends Controller
         if (!$user) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        $rules = Profile::$rules;
+
+    try {
         $profileData = $request->only([
 
             'CIF',
@@ -64,5 +68,29 @@ class ProfileController extends Controller
             'message' => 'Profile saved/updated successfully'
         ],
             200);
+        } catch (ValidationException $e) {
+            // Manejar los errores de validación
+            return response()->json(['errors' => $e->errors()], 422);
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        try {
+            $profile = Profile::findOrFail($id);
+    
+            if ($profile->user_id !== Auth::id()) {
+                return response()->json(['message' => 'No autorizado'], 401);
+            }
+    
+            // Eliminar el perfil
+            $profile->delete();
+    
+            return response()->json(['message' => 'Se ha eliminado el perfil'], 200);
+        } catch (\Exception $e) {
+        
+            return response()->json(['message' => 'Ha ocurrido un error al intentar eliminar el perfil'], 500);
+        };
     }
 }

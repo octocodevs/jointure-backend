@@ -30,6 +30,8 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 // Profile's Routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [ProfileController::class, 'storeOrUpdate'])->name('profile.storeOrUpdate');
+    Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::get('profile', [ProfileController::class, 'show']);
+

@@ -25,7 +25,7 @@ class Profile extends Model
     ];
 
     public static $rules= [
-            'image'  => 'nullable','mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'CIF' => 'required|string',
             'legal_structure' => 'required|in: Autónomo,Comunidad de bienes,Sociedad Limitada (S. L.),Sociedad Limitada Laboral (S. L. L.),Sociedad Anónima (S. A.),Sociedad Anónima Laboral (SAL),Sociedad Limitada Nueva Empresa (S. L. N. E.)',
             'sector' => 'required|string|in:Alimentación y bebidas,Viajes,Familia,
