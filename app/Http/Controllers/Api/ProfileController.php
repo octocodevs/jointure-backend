@@ -80,7 +80,7 @@ class ProfileController extends Controller
         try {
             $profile = Profile::findOrFail($id);
     
-            if ($profile->user_id !== Auth::id()) {
+            if (auth()->user()->id !== $profile->user_id){
                 return response()->json(['message' => 'No autorizado'], 401);
             }
     
