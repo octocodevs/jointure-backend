@@ -49,7 +49,7 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function (){
-        return $this->hasOne(Profile::class);
+    public function collaborations(){
+        return $this->hasMany(Collaboration::class);
     }
 }
