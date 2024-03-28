@@ -34,4 +34,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('profile', [ProfileController::class, 'show']);
+Route::get('profile/{user_id}', [ProfileController::class, 'getById']);
 

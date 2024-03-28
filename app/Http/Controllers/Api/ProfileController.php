@@ -21,6 +21,10 @@ class ProfileController extends Controller
         return response()->json($profile, 200);
     }
 
+    public function getById($user_id){
+        $profile = Profile::where('user_id',$user_id)->first();
+        return response()->json($profile,200);
+    }
 
     public function storeOrUpdate(Request $request):JsonResponse
     {
