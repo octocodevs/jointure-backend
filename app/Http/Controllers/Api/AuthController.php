@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+// use Illuminate\Support\Str;
+
 
 class AuthController extends Controller
 {
@@ -17,6 +20,7 @@ class AuthController extends Controller
         try {
             $request->validate(User::$rules);
             $user = User::create([
+                // 'id' => Str::uuid(),
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => Hash::make ($request->input('password')),
@@ -26,6 +30,8 @@ class AuthController extends Controller
                 'business_name' => $request->input('business_name'),
                 'subscription_type' => $request->input('subscription_type'),
             ]);
+
+
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json(['user' =>$user, 'access_token'=> $token, 'success' =>true,'message' => 'User registered successfully'], 201);
