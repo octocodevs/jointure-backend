@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
@@ -17,16 +19,23 @@ class ProfileController extends Controller
         //     return response()->json(['error' => 'Unauthorized'], 401);
         // }
         // $profile = $user->profile()->first();
-        $profile = Profile::all(); // Obtener todos los perfiles disponibles
+        // $profile = Profile::all(); // Obtener todos los perfiles disponibles
+        $profiles = Profile::with(['user:id,business_name,country'])->get();
+        return response()->json($profiles, 200);
+    }
+
+
+    public function getById($user_id)
+    {
+        $profile = Profile::with(['user:id,business_name,country'])->where('user_id', $user_id)->first();
+        if(!$profile){
+            return response()->json(['error' => 'Profile not found'], 404);
+        }
         return response()->json($profile, 200);
     }
 
-    public function getById($user_id){
-        $profile = Profile::where('user_id',$user_id)->first();
-        return response()->json($profile,200);
-    }
 
-    public function storeOrUpdate(Request $request):JsonResponse
+    public function storeOrUpdate(Request $request): JsonResponse
     {
         $user = $request->user();
         if (!$user) {
@@ -35,66 +44,73 @@ class ProfileController extends Controller
 
         $rules = Profile::$rules;
 
-    try {
-        $profileData = $request->only([
+        try {
+            $profileData = $request->only([
 
-            'CIF',
-            'legal_structure',
-            'sector',
-            'activity',
-            'offer',
-            'values',
-            'business_size',
-            'market',
-            'clients',
-            'sales_channels',
-            'description',
-        ]);
+                'CIF',
+                'legal_structure',
+                'phone_number',
+                'email_contact',
+                'sector',
+                'activity',
+                'offer',
+                'values',
+                'business_size',
+                'market',
+                'clients',
+                'sales_channels',
+                'description',
+            ]);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = $image->store('profile_images', 'public');
-            $profileData['image'] = $path;
-        }
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = $image->store('profile_images', 'public');
+                $profileData['image'] = $path;
+            }
 
-        $profile = $user->profile;
+            $profile = $user->profile;
 
-        if ($user->profile()->exists()) {
+            if ($user->profile()->exists()) {
 
-            $user->profile()->update($profileData);
-        } else {
+                $user->profile()->update($profileData);
+            } else {
 
-            $user->profile()->create($profileData);
-        }
-        return response()->json([
-            'data' =>$profileData,
-            'success' =>true,
-            'message' => 'Profile saved/updated successfully'
-        ],
-            200);
+                $user->profile()->create($profileData);
+            }
+            return response()->json(
+                [
+                    'data' => $profileData,
+                    'success' => true,
+                    'message' => 'Profile saved/updated successfully'
+                ],
+                200
+            );
         } catch (ValidationException $e) {
-            // Manejar los errores de validación
+
             return response()->json(['errors' => $e->errors()], 422);
         }
     }
 
 
-    public function destroy($id)
+    public function destroy()
     {
         try {
-            $profile = Profile::findOrFail($id);
-    
-            if ($profile->user_id !== Auth::id()) {
-                return response()->json(['message' => 'No autorizado'], 401);
+            $user = auth()->user();
+            if (!$user) {
+                return response()->json(['message' => 'Unauthorized'], 401);
             }
-    
-            // Eliminar el perfil
+
+            $profile = $user->profile;
+
+            if (!$profile) {
+                return response()->json(['message' => 'Profile not found'], 404);
+            }
+
             $profile->delete();
-    
-            return response()->json(['message' => 'Se ha eliminado el perfil'], 200);
+
+            return response()->json(['message' => 'Profile deleted successfully'], 200);
         } catch (\Exception $e) {
-        
-            return response()->json(['message' => 'Ha ocurrido un error al intentar eliminar el perfil'], 500);
-        };
+            return response()->json(['message' => 'Error: '. $e->getMessage()], 500);
+        }
     }
 }

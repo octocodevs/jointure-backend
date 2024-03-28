@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,10 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 // Profile's Routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [ProfileController::class, 'storeOrUpdate'])->name('profile.storeOrUpdate');
-    Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/users/update', [UserController::class, 'update'])->name('users.update');
 });
 
-Route::get('profile', [ProfileController::class, 'show']);
-Route::get('profile/{user_id}', [ProfileController::class, 'getById']);
+Route::get('profile', [ProfileController::class, 'show']); //muestra todos los perfiles
+Route::get('profile/{user_id}', [ProfileController::class, 'getById']); // perfil especifico.
 

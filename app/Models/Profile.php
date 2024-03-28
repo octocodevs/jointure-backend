@@ -9,10 +9,13 @@ class Profile extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'user_id';
     protected $fillable = [
         'image',
         'CIF',
         'legal_structure',
+        'phone_number',
+        'email_contact',
         'sector',
         'activity',
         'offer',
@@ -28,6 +31,8 @@ class Profile extends Model
             'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'CIF' => 'required|string',
             'legal_structure' => 'required|in: Autónomo,Comunidad de bienes,Sociedad Limitada (S. L.),Sociedad Limitada Laboral (S. L. L.),Sociedad Anónima (S. A.),Sociedad Anónima Laboral (SAL),Sociedad Limitada Nueva Empresa (S. L. N. E.)',
+            'phone_number'=> 'nullable|string|max:150',
+            'email_contact' => 'nullable|string|max:150',
             'sector' => 'required|string|in:Alimentación y bebidas,Viajes,Familia,
             Entretenimiento,
             Belleza,
