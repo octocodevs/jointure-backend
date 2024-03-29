@@ -37,6 +37,10 @@ class UserController extends Controller
         try {
             $user = auth()->user();
 
+            if(!$user){
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+            
             $request->validate([
                 'name' => 'required|string|max:255',
                 'password' => 'nullable|string|min:8|confirmed',
