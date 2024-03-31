@@ -49,7 +49,23 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function collaborations(){
-        return $this->hasMany(Collaboration::class);
+    public function collaborationProposals(){
+        return $this->hasMany(collaborationProposals::class);
+    }
+
+    public function collaborationParticipations()
+    {
+        return $this->hasMany(CollaborationParticipation::class);
+    }
+
+    //mensajeria 
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 }
