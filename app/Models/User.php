@@ -58,7 +58,7 @@ class User extends Authenticatable
         return $this->hasMany(CollaborationParticipation::class);
     }
 
-    //mensajeria 
+    //mensajeria
     public function sentMessages()
     {
         return $this->hasMany(Message::class, 'sender_id');
