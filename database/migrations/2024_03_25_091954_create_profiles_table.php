@@ -16,7 +16,7 @@ return new class extends Migration
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->primary();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('CIF');
             $table->string('legal_structure');
             $table->string('sector');
