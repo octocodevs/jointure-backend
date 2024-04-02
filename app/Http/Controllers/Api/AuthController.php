@@ -46,7 +46,7 @@ class AuthController extends Controller
     {
         $request->validate(['email'=>'required|email','password'=>'required']);
         $user = User::where('email',$request-> email)->first();
-
+        
         if(!$user){
             return response()->json(['message' => 'Unauthorized'], 401);
         }
