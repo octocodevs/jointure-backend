@@ -46,7 +46,11 @@ class AuthController extends Controller
     {
         $request->validate(['email'=>'required|email','password'=>'required']);
         $user = User::where('email',$request-> email)->first();
-        if(!$user){return response()->json(['message' => 'Unauthorized'], 401);}
+        
+        if(!$user){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         if(Auth::attempt($request->only('email','password'))){
             $user = Auth::user();
             $token = $user->createToken('auth_token')->plainTextToken;

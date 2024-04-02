@@ -78,13 +78,17 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         try {
-            $profile = Profile::findOrFail($id);
-    
-            if (auth()->user()->id !== $profile->user_id){
-                return response()->json(['message' => 'No autorizado'], 401);
+            $user = auth()->user();
+            if (!$user) {
+                return response()->json(['message' => 'Unauthorized'], 401);
             }
-    
-            // Eliminar el perfil
+
+            $profile = $user->profile;
+
+            if (!$profile) {
+                return response()->json(['message' => 'Profile not found'], 404);
+            }
+
             $profile->delete();
     
             return response()->json(['message' => 'Se ha eliminado el perfil'], 200);
