@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CollaborationParticipantionController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\CollaborationProposalController;
 use App\Http\Controllers\Api\UserController;
@@ -34,9 +35,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [ProfileController::class, 'storeOrUpdate'])->name('profile.storeOrUpdate');
     Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/users/update', [UserController::class, 'update'])->name('users.update');
+
     Route::post('/collaboration-proposals', [CollaborationProposalController::class, 'store'])->name('collaboration.store');
     Route::post('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'update'])->name('collaboration.update');
     Route::delete('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'destroy'])->name('collaboration.destroy');
+
+    Route::get('my-participations', [CollaborationParticipantionController ::class, 'index']);
+    Route::post('my-participations-status/{id}', [CollaborationParticipantionController::class, 'update']);
+    Route::get('my-participations/{status}', [CollaborationParticipantionController::class, 'filterByStatus']);
+    Route::post('my-participations/{id}', [CollaborationParticipantionController::class, 'joinCollaboration']);
+    Route::delete('my-participations/{id}', [CollaborationParticipantionController::class, 'leaveCollaboration']);
 });
 
 Route::get('profile', [ProfileController::class, 'show']); //muestra todos los perfiles

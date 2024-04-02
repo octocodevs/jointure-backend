@@ -11,9 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('collaboration_participations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('collaboration_id');
+            $table->string('status')->default('pending');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('collaboration_id')->references('id')->on('collaboration_proposals')->onDelete('cascade');
+
+            $table->unique(['user_id', 'collaboration_id']);
         });
     }
 
