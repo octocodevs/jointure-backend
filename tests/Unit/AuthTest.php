@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use app\Models\User;
-use SebastianBergmann\Type\VoidType;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -22,6 +21,7 @@ class AuthTest extends TestCase
 
     public function test_user_can_be_registrated(): void
     {
+        //Se crea un array $user que contiene información simulada
         $user = [
         'name' => $this ->faker->name,
         'email' => $this->faker->email,
@@ -33,7 +33,9 @@ class AuthTest extends TestCase
         'business_name' => "Business",
         'subscription_type' => "basic",
     ];
+        //Utiliza el método postJson() para enviar una solicitud HTTP POST a la ruta '/api/register' con los datos del usuario($user)
         $response = $this->postJson('/api/register', $user);
+        //Utiliza el método assertStatus() para verificar que la respuesta recibida tenga un estado HTTP 201
         $response->assertStatus(201);
         
     }
