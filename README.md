@@ -65,7 +65,7 @@ This repository is the Frontend where the visual part of the website is located.
     composer install
     ```
 3. Run the database (if using XAMP : Start, then Admin the MySQL DB)
-    ```
+    
 4. Run the project, 
     ```bash
     php artisan serve  
@@ -111,7 +111,7 @@ To run tests, run the following command
 
 **Back-end Team:**
 
-Laura Artaza - [Linkedin profile]((https://www.linkedin.com/in/laura-artaza/))
+Laura Artaza - [Linkedin profile](https://www.linkedin.com/in/laura-artaza/)
 
 Melissa Casola - [Linkedin profile](https://www.linkedin.com/in/melissa-casola/)
 
