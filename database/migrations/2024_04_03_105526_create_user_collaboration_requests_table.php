@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('collaboration_participations', function (Blueprint $table) {
+        Schema::create('user_collaboration_requests', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('collaboration_proposal_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('collaboration_id');
             $table->string('status')->default('pending');
             $table->timestamps();
 
+            $table->foreign('collaboration_proposal_id')->references('id')->on('collaboration_proposals')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('collaboration_id')->references('id')->on('collaboration_proposals')->onDelete('cascade');
-
-            $table->unique(['user_id', 'collaboration_id']);
         });
+
     }
 
     /**
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('collaboration_participations');
+        Schema::dropIfExists('user_collaboration_requests');
     }
 };
