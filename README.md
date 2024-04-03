@@ -1,66 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 👥🤝 Project - Jointure Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Jointure Logo](./public/img/jointure-logo.png)
 
-## About Laravel
+Jointure is a platform that automates collaborations between brands from various sectors, facilitating seamless interactions and partnerships. This README provides an overview of the project's structure, technologies used, features, installation instructions, and contribution details.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Requirements
+- Visual Studio Code
+- Node.js installed on the computer
+- PHPMyAdmin
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Technologies Used:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Frontend:
+  - Next.js
+  - React.js
+  - Tailwind CSS
+  - Material-UI (MUI)
+  - Axios
+  - Jest
+  - Cypress
+- Backend:
+  - PHP
+  - Laravel
 
-## Learning Laravel
+## 📁 Frontend File Structure:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **.next:** Auto-generated files by Next.js during the build process.
+- **/node_modules:** Dependencies managed by npm.
+- **public/:** Static files accessible directly from the browser.
+- **src/:**
+  - **/app:**
+    - **/admin:**
+      - **/login:** Login related components and pages.
+      - **/register:** Register related components and pages.
+      - **/marketplace:** Components and pages related to the marketplace.
+      - **/newcollab:** Components and pages related to creating a new collaboration.
+      - **/inbox:** Components and pages related to the user's inbox.
+    - **/components:** Reusable UI components used across the application.
+      - **/MUI:** Material-UI components.
+    - **/services:** Axios API integration and other services.
+  - **/pages:** Main application pages.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📚 Features:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Marketplace:** Display collaborations from various users.
+- **User Authentication:** Login and registration functionalities.
+- **Create Collaboration:** Users can create and publish collaboration posts.
+- **Inbox:** View incoming and pending collaboration proposals.
+- **Search Functionality:** Search collaborations by name.
+- **Responsive Design:** Optimized for desktop and mobile devices.
 
-## Laravel Sponsors
+## ⚙️ Installation
+This repository is the Frontend where the visual part of the website is located. To install it on your computer, follow these steps:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/octocodevs/jointure-backend.git
+    ```
+2. Put in the terminal within the project
+    ```bash
+    cd jointure-backend
+    ```
+    ```bash
+    composer install
+    ```
+3. Run the database (if using XAMP : Start, then Admin the MySQL DB)
+    ```
+4. Run the project, 
+    ```bash
+    php artisan serve  
+   
+    ```
+5. Migrate and seed your database 
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+   
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+> [!IMPORTANT]
+>
+> ## 🚨 API DOC
+Here is the link to the documentation of the API. You may use Postman application to check the functions
 
-## Contributing
+🔗 [API DOC link ]() 🔗
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> 
+> ## 🚨 Frontend Repository
+Here is the link to our Backend repository if you want to use it with this Backend:
 
-## Code of Conduct
+🔗 [Frontend link ](https://github.com/octocodevs/jointure-frontend) 🔗
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+## 🧪 Running Tests
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+To run tests, run the following command
 
-## License
+   ```bash
+   php artisan test
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Demo
+
+![Login view](./public/img/login.png)
+![Marketplace view](./public/img/marketplace.png)
+![Profile view](./public/img/profile.png)
+
+
+## 👩‍💻 Developers
+
+**Back-end Team:**
+
+Laura Artaza - [Linkedin profile]((https://www.linkedin.com/in/laura-artaza/))
+
+Melissa Casola - [Linkedin profile](https://www.linkedin.com/in/melissa-casola/)
+
+Zohra Bellamine - [Linkedin profile](https://www.linkedin.com/in/z-bellamine/)
+
+
+**Front-end Team:**
+
+Stephanie Céspedes - [Linkedin profile](https://www.linkedin.com/in/stephanie-cespedes/)
+
+Grecia Landazuri - [Linkedin profile](https://www.linkedin.com/in/grecialh/)
+
+Carolina Delfa - [Linkedin profile](https://www.linkedin.com/in/carolina-delfa-silvestre/)
+
+Vicki Robertson - [Linkedin profile](https://www.linkedin.com/in/vickirobertson/)
+
+Gabriela Irimia  - [Linkedin profile](https://www.linkedin.com/in/gabriela-irimia/)
+
+
