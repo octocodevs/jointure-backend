@@ -89,10 +89,12 @@ class CollaborationParticipantionController extends Controller
             return response()->json(['message' => 'No estás autenticado'], 401);
         }
 
-        $participant = CollaborationParticipation::findOrFail($id);
+        $participant = CollaborationParticipation::with('user', 'collaborationProposal')->findOrFail($id);
+
         if (!$participant) {
             return response()->json(['error' => 'Collaboration participant not found'], 404);
         }
+
         // Verificar si el usuario autenticado es el propietario del participante
         if ($participant->user_id !== Auth::user()->id) {
             return response()->json(['message' => 'No tienes permiso para actualizar este registro'], 403);
@@ -105,8 +107,14 @@ class CollaborationParticipantionController extends Controller
 
         $participant->update(['status' => $request->status]);
 
-        return response()->json([
-            'data' =>$participant, 'success'=>true, 'message' => 'Estado de participación actualizado correctamente'], 200);
+        $data = [
+            'participant' => $participant,
+            'user_details' => $participant->user,
+            'proposal_details' => $participant->collaborationProposal,
+            'success' => true,
+            'message' => 'Estado de participación actualizado correctamente'
+        ];
 
-        }
+        return response()->json($data, 200);
+    }
 }
