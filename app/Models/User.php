@@ -7,11 +7,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     protected $fillable = [
 
@@ -23,16 +29,25 @@ class User extends Authenticatable
         'country',
         'business_name',
         'subscription_type',
+        'google_id',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+   
+   protected $appends = [
+       'profile_photo_url',
+   ];
+
 
     public static $rules = [
         'name' => 'required|string|max:255',
@@ -58,7 +73,7 @@ class User extends Authenticatable
         return $this->hasMany(CollaborationParticipation::class);
     }
 
-    //mensajeria
+    //mensajeria 
     public function sentMessages()
     {
         return $this->hasMany(Message::class, 'sender_id');
