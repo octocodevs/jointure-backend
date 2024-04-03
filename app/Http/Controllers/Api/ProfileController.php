@@ -60,6 +60,14 @@ class ProfileController extends Controller
                 'clients',
                 'sales_channels',
                 'description',
+                'social_networks_instagram',
+                'social_networks_linkedin',
+                'social_networks_x',
+                'social_networks_facebook',
+                'social_networks_tiktok',
+                'social_networks_spotify',
+                'social_networks_youtube',
+                'social_networks_pinterest',
             ]);
 
             if ($request->hasFile('image')) {

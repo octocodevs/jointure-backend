@@ -12,6 +12,8 @@ class CollaborationProposal extends Model
 
     protected $fillable = [
         'user_id',
+        'brand',
+        'image',
         // 'category_id',
         'title',
         'description',
@@ -54,19 +56,21 @@ class CollaborationProposal extends Model
 
     public static $rulesCollaboration=  [
         'user_id' => 'required|exists:users,id',
+        'brand'=> 'required|string|max:100',
         // 'category_id' => 'required|exists:categories,id',
         'title' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
+        'description' => 'required|string|max:500',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'collab_start_date' => 'nullable|date',
         'collab_end_date' => 'nullable|date|after_or_equal:collab_start_date',
-        // 'collab_type' => ['required', 'string', Rule::in(['Co-Branding', 'Co-Licensing', 'Co-Supply', 'Co-Stand', 'Co-Marketing', 'Co-Event'])],
-        'collab_type' => 'required|string|max:255',
-        'duration' => 'nullable|string|max:255',
+        // 'collab_type' => ['required', 'string', Rule::in([])],
+        'collab_type' => 'required|string|in:Co-Branding,Co-Licensing,Co-Supply,Co-Stand,Co-Marketing,Co-Event',
+        'duration' => 'nullable|string|in:puntual,periódica,largo plazo',
         'compensation' => 'nullable|string|max:255',
         'compensation_amount' => 'nullable|numeric|min:0',
         'cost' => 'nullable|string|max:255',
-        'objectives' => 'required|string',
-        'ideal_collaborators' => 'nullable|string',
+        'objectives' => 'required|string|max:500',
+        'ideal_collaborators' => 'nullable|string|max:500',
         'proposal' => 'required|string',
         'responsibility' => 'nullable|string',
         'planning' => 'nullable|string',
@@ -75,7 +79,7 @@ class CollaborationProposal extends Model
         'economic_agreements' => 'nullable|string',
         'terms_and_conditions' => 'nullable|string',
         'observations' => 'nullable|string',
-        'public_or_private' => 'required|string|in:public,private',
+        'public_or_private' => 'nullable|string|in:publico,privado',
         'collab_limit' => 'nullable|boolean',
         'limit' => 'nullable|numeric',
         'ad_start_date' => 'required|date',
@@ -89,7 +93,7 @@ class CollaborationProposal extends Model
         parent::boot();
 
         static::creating(function ($proposal) {
-            $proposal->public_or_private = 'private';
+            $proposal->public_or_private = 'privado';
             $proposal->collab_limit = false;
 
         });

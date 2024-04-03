@@ -21,7 +21,7 @@ class CollaborationParticipation extends Model
 
     public function collaborationProposal()
     {
-        return $this->belongsTo(CollaborationProposal::class);
+        return $this->belongsTo(CollaborationProposal::class,'collaboration_id');
     }
 
     protected static function boot()
