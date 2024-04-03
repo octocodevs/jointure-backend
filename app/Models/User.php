@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,22 +19,19 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
+
         'name',
         'email',
         'password',
+        'position',
+        'profile_type',
+        'country',
+        'business_name',
+        'subscription_type',
+        'google_id',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -41,21 +39,48 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
+   
+   protected $appends = [
+       'profile_photo_url',
+   ];
+
+
+    public static $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password'=>'required|string|confirmed|min:8',
+        'position'=>'required|string|max:255',
+        'profile_type' => 'required|in:agencia,freelance,empresa',
+        'country' => 'nullable|string|max:255',
+        'business_name'=>'required|string|max:255',
+        'subscription_type' => 'nullable|in:basic,professional,business',
     ];
+
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
+    public function collaborationProposals(){
+        return $this->hasMany(collaborationProposals::class);
+    }
+
+    public function collaborationParticipations()
+    {
+        return $this->hasMany(CollaborationParticipation::class);
+    }
+
+    //mensajeria 
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
 }
