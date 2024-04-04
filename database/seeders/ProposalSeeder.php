@@ -1,3 +1,4 @@
+
 <?php
 
 namespace Database\Seeders;
@@ -289,3 +290,4 @@ class ProposalSeeder extends Seeder
         
     }
 }
+
