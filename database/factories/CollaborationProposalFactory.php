@@ -16,8 +16,10 @@ class CollaborationProposalFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(),
             // 'category_id' => \App\Models\Category::factory(),
+            'brand' => $this ->faker->name,
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
+            'image' => $this->faker->imageUrl,
             'collab_start_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'collab_end_date' => $this->faker->dateTimeBetween('+1 month', '+2 months'),
             'collab_type' => $this->faker->randomElement(['Co-Branding', 'Co-Licensing', 'Co-Supply', 'Co-Stand', 'Co-Marketing', 'Co-Event']),

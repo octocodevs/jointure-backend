@@ -14,12 +14,6 @@ class ProfileController extends Controller
 
     public function show(Request $request)
     {
-        // $user = $request->user();
-        // if (!$user) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
-        // $profile = $user->profile()->first();
-        // $profile = Profile::all(); // Obtener todos los perfiles disponibles
         $profiles = Profile::with(['user:id,business_name,country'])->get();
         return response()->json($profiles, 200);
     }

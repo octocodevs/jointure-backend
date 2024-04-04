@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CollaborationParticipation;
+use App\Models\CollaborationProposal;
 use App\Models\UserCollaborationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,34 +14,41 @@ class UserCollaborationRequestController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $requests = UserCollaborationRequest::with(['user.profile', 'user:id,name', 'collaborationProposal'])->whereHas('collaborationProposal', function ($query) use ($user) {
-            $query->where('user_id', '!=', $user->id); // Filtra para obtener solo solicitudes de colaboración donde el creador no es el usuario autenticado
-        })->get();
 
-        return response()->json(['data' => $requests], 200);
+        $collaborationProposals = CollaborationProposal::where('user_id', $user->id)->get();
+
+        $userCollaborationRequests = UserCollaborationRequest::whereIn('collaboration_proposal_id', $collaborationProposals->pluck('id'))
+        ->with('user')
+        ->get();
+
+        return response()->json(['data' => $userCollaborationRequests], 200);
     }
 
 
     public function update(Request $request, $id)
     {
         $user = Auth::user();
-        $request = UserCollaborationRequest::findOrFail($id);
+        $requestStatus = $request->status;
 
-        if ($request->user_id !== $user->id) {
+
+        $userCollaborationRequest = UserCollaborationRequest::findOrFail($id);
+
+        $collaborationProposal = CollaborationProposal::findOrFail($userCollaborationRequest->collaboration_proposal_id);
+        if ($collaborationProposal->user_id !== $user->id) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $validatedData = $request->validate([
-            'status' => 'required|in:pending,accepted,rejected',
-        ]);
+        $userCollaborationRequest->update(['status' => $requestStatus]);
 
-        $request->update($validatedData);
+        $collaborationParticipation = CollaborationParticipation::where('collaboration_id', $collaborationProposal->id)
+            ->where('user_id', $userCollaborationRequest->user_id)
+            ->first();
+        $collaborationParticipation->update(['status' => $requestStatus]);
 
         return response()->json([
-            'data' => $request,
+            'data'=>$collaborationParticipation,
             'success' => true,
-            'message' => 'User collaboration request updated successfully'
-        ], 200);
+            'message' => 'Status successfully updated'], 200);
     }
 
 
@@ -55,10 +64,4 @@ class UserCollaborationRequestController extends Controller
         return response()->json(['data' => $request], 200);
     }
 
-
-
-    public function destroy(string $id)
-    {
-        //
-    }
 }

@@ -19,19 +19,6 @@ class UserController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        //
-        // $request->validate(User::$rules);
-    }
-
-
-    public function show(string $id)
-    {
-
-    }
-
-
     public function update(Request $request)
     {
         try {
@@ -40,7 +27,7 @@ class UserController extends Controller
             if(!$user){
                 return response()->json(['message' => 'Unauthorized'], 401);
             }
-            
+
             $request->validate([
                 'name' => 'required|string|max:255',
                 'password' => 'nullable|string|min:8|confirmed',
@@ -64,7 +51,7 @@ class UserController extends Controller
             return response()->json([
                 'datos' => $user,
                 'success' => true,
-                'message' => 'User updated successfully'
+                'message' => 'User successfully updated '
             ], 200);
         } catch (\Exception $e) {
 
@@ -78,8 +65,5 @@ class UserController extends Controller
 
 
 
-    public function destroy(string $id)
-    {
-
-    }
+    
 }

@@ -16,12 +16,13 @@ class CollaborationParticipation extends Model
     ];
 
     public static $rulesStatus = [
-        'status' => 'required|string|in:pending,accepted, rejected',
+        'status' => 'required|string|in:pending,accepted,rejected',
     ];
 
     public function collaborationProposal()
     {
-        return $this->belongsTo(CollaborationProposal::class,'collaboration_id');
+
+        return $this->belongsTo(CollaborationProposal::class, 'collaboration_id');
     }
 
     protected static function boot()
@@ -30,7 +31,6 @@ class CollaborationParticipation extends Model
 
         static::creating(function ($proposal) {
             $proposal->status = 'pending';
-            // $proposal->collab_limit = false;
 
         });
     }
