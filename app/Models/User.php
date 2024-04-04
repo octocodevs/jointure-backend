@@ -60,12 +60,18 @@ class User extends Authenticatable
         'subscription_type' => 'nullable|in:basic,professional,business',
     ];
 
+    protected static function boot(){
+        parent::boot();
+        static::creating(function ($user) {
+            $user->subscription_type = 'basic'  ;
+        });
+    }
     public function profile(){
         return $this->hasOne(Profile::class);
     }
 
     public function collaborationProposals(){
-        return $this->hasMany(CollaborationProposals::class);
+        return $this->hasMany(CollaborationProposal::class);
     }
 
     public function collaborationParticipations()
