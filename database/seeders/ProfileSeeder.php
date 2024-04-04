@@ -132,7 +132,7 @@ class ProfileSeeder extends Seeder
 
         $profile4 = new Profile();
         
-        $profile->user_id = '4';
+        $profile4->user_id = '4';
         $profile4->image = "http://localhost:8000/img/lipstick-logo.jpg";
         $profile4->CIF = 'F12345678';
         $profile4->legal_structure = 'Sociedad Anónima Laboral (SAL)';
@@ -219,7 +219,7 @@ class ProfileSeeder extends Seeder
 
         $profile7 = new Profile();
         
-        $profile->user_id = '8';
+        $profile7->user_id = '8';
         $profile7->image = "http://localhost:8000/img/cake-logo.jpg";
         $profile7->CIF = 'N12345678';
         $profile7->legal_structure = 'Sociedad Anónima (S. A.)';
