@@ -290,3 +290,4 @@ class ProposalSeeder extends Seeder
         
     }
 }
+

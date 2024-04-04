@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class CollaborationParticipantionController extends Controller
+class CollaborationParticipationController extends Controller
 {
 
     //muestra las colab. a las que me he unido, sin importar el status
@@ -18,7 +18,7 @@ class CollaborationParticipantionController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $participants = CollaborationParticipation::with(['collaborationProposal'])->where('user_id', $user->id)->get();
+        $participants = CollaborationParticipation::with('collaborationProposal')->where('user_id', $user->id)->get();
         return response()->json(['data' => $participants], 200);
     }
 
@@ -26,6 +26,10 @@ class CollaborationParticipantionController extends Controller
     //Permite que el usuario se UNA a una collab_ID
     public function joinCollaboration($collaborationId)
     {
+        if (!Auth::check()) {
+            return response()->json(['message' => 'Unauthorized user'], 401);
+        }
+
         $user = Auth::user();
         $collaboration = CollaborationProposal::find($collaborationId);
 
@@ -38,17 +42,17 @@ class CollaborationParticipantionController extends Controller
             ->first();
 
         if ($participant) {
-            return response()->json(['message' => 'Ya estás unido a esta colaboración'], 400);
+            return response()->json(['message' => 'You already joined this collaboration'], 400);
         }
 
         $collab_partic =  CollaborationParticipation::create([
             'user_id' => $user->id,
             'collaboration_id' => $collaborationId,
-
         ]);
 
+        // enviar la solicitud de colaboración para el usuario-creador de la propuesta de colaboración
         UserCollaborationRequest::create([
-            'user_id' => $collaboration->user_id,
+            'user_id' => $user->id,
             'collaboration_proposal_id' => $collaborationId,
             'status' => 'pending',
         ]);
@@ -56,7 +60,7 @@ class CollaborationParticipantionController extends Controller
         return response()->json([
             'data' => $collab_partic,
             'success' => true,
-            'message' => 'Te has unido a la colaboración correctamente'
+            'message' => 'You have successfully joined this collaboration'
         ], 200);
     }
 
@@ -70,12 +74,16 @@ class CollaborationParticipantionController extends Controller
             ->first();
 
         if (!$participant) {
-            return response()->json(['message' => 'No estás unido a esta colaboración'], 400);
+            return response()->json(['message' => 'You have not joined this collaboration'], 400);
         }
+        UserCollaborationRequest::where('user_id', $user->id)
+        ->where('collaboration_proposal_id', $collaborationId)
+        ->delete();
+
 
         $participant->delete();
 
-        return response()->json(['message' => 'Has salido de la colaboración correctamente'], 200);
+        return response()->json(['message' => 'You have successfully left this collaboration'], 200);
     }
 
 
@@ -90,35 +98,5 @@ class CollaborationParticipantionController extends Controller
     }
 
 
-    //actualizar el estado de la solicitud de participacion
-    public function update(Request $request, string $id)
-    {
-        if (!Auth::check()) {
-            return response()->json(['message' => 'No estás autenticado'], 401);
-        }
 
-        $participant = CollaborationParticipation::findOrFail($id);
-        if (!$participant) {
-            return response()->json(['error' => 'Collaboration participant not found'], 404);
-        }
-
-        $collaboration = $participant->collaborationProposal;
-
-        if ($collaboration->user_id !== Auth::user()->id) {
-            return response()->json(['message' => 'No tienes permiso para actualizar este registro'], 403);
-        }
-
-        $validator = Validator::make($request->all(), CollaborationParticipation::$rulesStatus);
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        $participant->update(['status' => $request->status]);
-
-        return response()->json([
-            'data' => $participant,
-            'success' => true,
-            'message' => 'Estado de participación actualizado correctamente'
-        ], 200);
-    }
 }

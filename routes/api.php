@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\CollaborationParticipantionController;
+use App\Http\Controllers\Api\CollaborationParticipationController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\CollaborationProposalController;
 use App\Http\Controllers\Api\UserCollaborationRequestController;
@@ -41,12 +41,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'update'])->name('collaboration.update');
     Route::delete('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'destroy'])->name('collaboration.destroy');
 
-    Route::get('my-participations', [CollaborationParticipantionController ::class, 'index']);
-    Route::get('my-participations/{status}', [CollaborationParticipantionController::class, 'filterByStatus']);
-    Route::post('my-participations/{id}', [CollaborationParticipantionController::class, 'joinCollaboration']);
-    Route::delete('my-participations/{id}', [CollaborationParticipantionController::class, 'leaveCollaboration']);
+    Route::get('my-participations', [CollaborationParticipationController ::class, 'index']);
+    Route::post('my-participations/{id}', [CollaborationParticipationController::class, 'joinCollaboration']);
+    Route::delete('my-participations/{id}', [CollaborationParticipationController::class, 'leaveCollaboration']);
 
-    //Route::post('my-participations-status/{id}', [CollaborationParticipantionController::class, 'update']);
+    Route::get('my-participations/{status}', [CollaborationParticipationController::class, 'filterByStatus']);
+    //Route::post('my-participations-status/{id}', [CollaborationParticipationController::class, 'update']);
 
     Route::get('my-collaboration-requests', [UserCollaborationRequestController::class, 'index']);
     //  actualiza el estado de una solicitud de participación
