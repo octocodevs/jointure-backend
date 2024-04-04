@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class CollaborationParticipantionController extends Controller
+class CollaborationParticipationController extends Controller
 {
 
     //muestra las colab. a las que me he unido, sin importar el status
@@ -27,14 +27,14 @@ class CollaborationParticipantionController extends Controller
     public function joinCollaboration($collaborationId)
     {
         if (!Auth::check()) {
-            return response()->json(['message' => 'Usuario no autenticado'], 401);
+            return response()->json(['message' => 'Unauthorized user'], 401);
         }
 
         $user = Auth::user();
         $collaboration = CollaborationProposal::find($collaborationId);
 
         if (!$collaboration) {
-            return response()->json(['message' => 'Colaboración no encontrada'], 404);
+            return response()->json(['message' => 'Collaboration not found'], 404);
         }
 
         $participant = CollaborationParticipation::where('user_id', $user->id)
@@ -42,7 +42,7 @@ class CollaborationParticipantionController extends Controller
             ->first();
 
         if ($participant) {
-            return response()->json(['message' => 'Ya estás unido a esta colaboración'], 400);
+            return response()->json(['message' => 'You already joined this collaboration'], 400);
         }
 
         $collab_partic =  CollaborationParticipation::create([
@@ -60,7 +60,7 @@ class CollaborationParticipantionController extends Controller
         return response()->json([
             'data' => $collab_partic,
             'success' => true,
-            'message' => 'Te has unido a la colaboración correctamente'
+            'message' => 'You have successfully joined this collaboration'
         ], 200);
     }
 
@@ -74,7 +74,7 @@ class CollaborationParticipantionController extends Controller
             ->first();
 
         if (!$participant) {
-            return response()->json(['message' => 'No estás unido a esta colaboración'], 400);
+            return response()->json(['message' => 'You have not joined this collaboration'], 400);
         }
         UserCollaborationRequest::where('user_id', $user->id)
         ->where('collaboration_proposal_id', $collaborationId)
@@ -83,7 +83,7 @@ class CollaborationParticipantionController extends Controller
 
         $participant->delete();
 
-        return response()->json(['message' => 'Has salido de la colaboración correctamente'], 200);
+        return response()->json(['message' => 'You have successfully left this collaboration'], 200);
     }
 
 

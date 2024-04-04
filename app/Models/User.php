@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
     public function collaborationProposals(){
-        return $this->hasMany(collaborationProposals::class);
+        return $this->hasMany(CollaborationProposals::class);
     }
 
     public function collaborationParticipations()

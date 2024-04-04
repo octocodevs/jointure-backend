@@ -51,7 +51,7 @@ class UserController extends Controller
             return response()->json([
                 'datos' => $user,
                 'success' => true,
-                'message' => 'User updated successfully'
+                'message' => 'User successfully updated '
             ], 200);
         } catch (\Exception $e) {
 
@@ -65,8 +65,5 @@ class UserController extends Controller
 
 
 
-    public function destroy(string $id)
-    {
-
-    }
+    
 }

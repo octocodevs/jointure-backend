@@ -48,7 +48,7 @@ class UserCollaborationRequestController extends Controller
         return response()->json([
             'data'=>$collaborationParticipation,
             'success' => true,
-            'message' => 'Estado de la solicitud actualizado correctamente'], 200);
+            'message' => 'Status successfully updated'], 200);
     }
 
 
