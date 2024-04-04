@@ -42,10 +42,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'destroy'])->name('collaboration.destroy');
 
     Route::get('my-participations', [CollaborationParticipantionController ::class, 'index']);
-    Route::get('my-participations/{status}', [CollaborationParticipantionController::class, 'filterByStatus']);
     Route::post('my-participations/{id}', [CollaborationParticipantionController::class, 'joinCollaboration']);
     Route::delete('my-participations/{id}', [CollaborationParticipantionController::class, 'leaveCollaboration']);
 
+    Route::get('my-participations/{status}', [CollaborationParticipantionController::class, 'filterByStatus']);
     //Route::post('my-participations-status/{id}', [CollaborationParticipantionController::class, 'update']);
 
     Route::get('my-collaboration-requests', [UserCollaborationRequestController::class, 'index']);
