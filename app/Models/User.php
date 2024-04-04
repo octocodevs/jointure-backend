@@ -43,10 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-   
-   protected $appends = [
-       'profile_photo_url',
-   ];
+
+    protected $appends = [
+        'profile_photo_url',
+    ];
 
 
     public static $rules = [
@@ -73,7 +73,7 @@ class User extends Authenticatable
         return $this->hasMany(CollaborationParticipation::class);
     }
 
-    //mensajeria 
+    //mensajeria
     public function sentMessages()
     {
         return $this->hasMany(Message::class, 'sender_id');
