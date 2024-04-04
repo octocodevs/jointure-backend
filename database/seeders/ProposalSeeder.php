@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Database\Seeders;
@@ -290,5 +289,4 @@ class ProposalSeeder extends Seeder
         
     }
 }
-=========
->>>>>>>>> Temporary merge branch 2
+
