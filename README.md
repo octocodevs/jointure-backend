@@ -74,9 +74,20 @@ To install this repository on your computer, follow these steps:
     ```
 5. Migrate and seed your database 
     ```bash
-    php artisan migrate:fresh --seed
+    php artisan migrate
+    ```
+5. Create and seed your database 
+    ```bash
+    php artisan db:seed --class=UserSeeder
+    ```
+   ```bash
+    php artisan db:seed --class=ProfileSeeder
+    ```
+    ```bash
+    php artisan db:seed --class=ProposalSeeder
     ```
    
+
 
 
 > [!IMPORTANT]
