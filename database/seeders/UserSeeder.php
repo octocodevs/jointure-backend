@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         $user1->name = 'Sofia Sanchez';
         $user1->email = 'sofia@email.com';
         $user1->password = '12345678';
-        $user1->position = 'CEO';
+        $user1->position = 'Secretaria';
         $user1->profile_type = 'empresa';
         $user1->country = 'España';
         $user1->business_name = 'Talent Technology Foundation';       
@@ -59,13 +59,13 @@ class UserSeeder extends Seeder
         $user3 = new User();
         
         $user3->id = '4';
-        $user3->name = 'Marisol Serrat';
+        $user3->name = 'Marisol Analia Serrat';
         $user3->email = 'marisol@email.com';
         $user3->password = '12345678';
-        $user3->position = 'CEO';
+        $user3->position = 'Creadora';
         $user3->profile_type = 'empresa';
         $user3->country = 'España';
-        $user3->business_name = 'Marisol Cosmetics';       
+        $user3->business_name = 'MAS Cosmetica';       
         $user3->subscription_type = 'basic';
 
         $user3->save();
@@ -93,7 +93,7 @@ class UserSeeder extends Seeder
         $user5->position = 'Presidente';
         $user5->profile_type = 'empresa';
         $user5->country = 'España';
-        $user5->business_name = 'U Food';       
+        $user5->business_name = 'U Fuud';       
         $user5->subscription_type = 'basic';
 
         $user5->save();
