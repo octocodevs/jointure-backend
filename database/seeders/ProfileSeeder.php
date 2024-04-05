@@ -46,7 +46,7 @@ class ProfileSeeder extends Seeder
         $profile1 = new Profile();
 
         $profile1->user_id = '6';
-        $profile1->image = "http://localhost:8000/img/fruut-bars-logo.jpg";
+        $profile1->image = "http://localhost:8000/img/fruut-logo.jpg";
         $profile1->CIF = 'A12345678';
         $profile1->legal_structure = 'Sociedad Limitada (S. L.)';
         $profile1->phone_number = '12345688';

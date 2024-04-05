@@ -17,11 +17,11 @@ class ProposalSeeder extends Seeder
         $proposal = new CollaborationProposal();
 
         $proposal->user_id = '2';
-        $proposal->brand = 'Nature Bliss';
+        $proposal->brand = 'Natur Bliss';
         $proposal->image = "http://localhost:8000/img/suncream.jpg";
         // $proposal->category_id = ;
-        $proposal->title = 'Lanzamiento de Nature Sol';
-        $proposal->description = 'NatureBliss, una marca de productos naturales para el cuidado de la piel, lanzará NatureSol, una línea de productos de protección solar y cuidado de la piel diseñada específicamente para aventuras al aire libre';
+        $proposal->title = 'Lanzamiento de Natur Sol';
+        $proposal->description = 'Natur Bliss, una marca de productos naturales para el cuidado de la piel, lanzará Natur Sol, una línea de productos de protección solar y cuidado de la piel diseñada específicamente para aventuras al aire libre';
         $proposal->collab_start_date = '2025-03-01';
         $proposal->collab_end_date = '2025-09-01';
         $proposal->collab_type = 'Co-Branding';
@@ -31,8 +31,8 @@ class ProposalSeeder extends Seeder
         $proposal->cost = null;
         $proposal->objectives = 'Mejor conocimiento de la marca y sus valores';
         $proposal->ideal_collaborators = 'Marcas asociadas con el aire libre, vacaciones en la naturaleza, equipaje de aventura';
-        $proposal->proposal = 'Queremos lanzar el producto NatureSol y ofrecer consejos sobre cómo usarlo mejor para aprovechar al máximo el aire libre con protección solar responsable y sostenible';
-        $proposal->responsibility = 'NatureBliss podría colaborar en la promoción de la línea de productos conjuntos a través de campañas de marketing compartidas, actividades al aire libre, eventos de lanzamiento conjunto y colaboraciones con influencers que comparten el interés por la naturaleza y el estilo de vida activo';
+        $proposal->proposal = 'Queremos lanzar el producto Natur Sol y ofrecer consejos sobre cómo usarlo mejor para aprovechar al máximo el aire libre con protección solar responsable y sostenible';
+        $proposal->responsibility = 'Natur Bliss podría colaborar en la promoción de la línea de productos conjuntos a través de campañas de marketing compartidas, actividades al aire libre, eventos de lanzamiento conjunto y colaboraciones con influencers que comparten el interés por la naturaleza y el estilo de vida activo';
         $proposal->planning = null;
         $proposal->operations_and_sales = null;
         $proposal->marketing = null;
@@ -54,8 +54,8 @@ class ProposalSeeder extends Seeder
         $proposal6->brand = 'Cakery';
         $proposal6->image = "http://localhost:8000/img/cakery-donuts.jpg";
         // $proposal6->category_id = ;
-        $proposal6->title = 'Celebramos la nueva pasteleria del Madrid: Cakery';
-        $proposal6->description = 'Para celebrar la gran apertura de la nueva pasteleria Cakery, queremos montar un evento de lujo con champán, productos de belleza, y mucho más';
+        $proposal6->title = 'Abrimos Cakery en Madrid';
+        $proposal6->description = 'Para celebrar la gran apertura de Cakery, una pasteleria de lujo, queremos montar un evento de cinco estrellas con champán, productos de belleza, y mucho más';
         $proposal6->collab_start_date = '2024-09-14';
         $proposal6->collab_end_date = '2024-09-15';
         $proposal6->collab_type = 'Co-Event';
@@ -86,9 +86,9 @@ class ProposalSeeder extends Seeder
 
         $proposal7->user_id = '1';
         $proposal7->brand = 'TechTalent';
-        $proposal7->image = "http://localhost:8000/img/woman-tech.jpg";
+        $proposal7->image = "http://localhost:8000/img/tech-talent.jpg";
         // $proposal7->category_id = ;
-        $proposal7->title = 'Celebramos IWD 2025 con las madres en tech';
+        $proposal7->title = 'Celebramos IWD 2025';
         $proposal7->description = 'TechTalent, una fundación de Barcelona que apoya a madres en el ámbito tecnológico, está planeando celebrar el Día Internacional de la Mujer 2025 con un nuevo evento dirigido a fomentar que las mujeres con hijos ingresen al mundo tecnológico. Amigable para niños con un área de juego supervisada, comida y entretenimiento aptos para niños, el evento tiene como objetivo establecer conexiones entre marcas y madres, y ayudar a que la tecnología sea un sector que dé la bienvenida a las habilidades y conocimientos que las madres pueden aportar al mundo tecnológico. Con charlas, comida, networking y más';
         $proposal7->collab_start_date = '2025-03-01';
         $proposal7->collab_end_date = '2025-03-31';
@@ -123,7 +123,7 @@ class ProposalSeeder extends Seeder
         $proposal1->brand = 'Veg Fest';
         $proposal1->image = "http://localhost:8000/img/vegan-food-fair.jpg";
         // $proposal->category_id = ;
-        $proposal1->title = 'Veg Fest Barcelona: Celebrando el Día Internacional Vegano';
+        $proposal1->title = 'Veg Fest Barcelona 2024';
         $proposal1->description = 'Veg Fest es un evento emocionante que queremos lanzar en Barcelona para celebra el Día Internacional Vegano con una amplia variedad de deliciosas opciones de comida vegana, talleres educativos y actividades divertidas';
         $proposal1->collab_start_date = '2024-11-01';
         $proposal1->collab_end_date = '2024-11-03';
@@ -157,7 +157,7 @@ class ProposalSeeder extends Seeder
         $proposal2->brand = 'PintArte';
         $proposal2->image = "http://localhost:8000/img/bright-makeup.jpg";
         // $proposal->category_id = ;
-        $proposal2->title = 'Promoción de la marca local PintArte con otras marcas locales del mundo urbano';
+        $proposal2->title = 'Makeup urbano en BCN';
         $proposal2->description = 'PintArte, una marca de maquillaje nacido en Barcelona quiere colaborar con otras marcas de la cuidad, sobretodo las que sean más del mundo urbano, como tiendas o marcas de skates, ropa urbana etc para lanzar productos juntos como skates, chandals';
         $proposal2->collab_start_date = '2024-04-01';
         $proposal2->collab_end_date = '2025-04-01';
@@ -191,7 +191,7 @@ class ProposalSeeder extends Seeder
         $proposal3->brand = 'Las Amigas del Punto';
         $proposal3->image = "http://localhost:8000/knitting.jpg";
         // $proposal3->category_id = ;
-        $proposal3->title = 'Celebramos 10 años de Las Amigas del Punto, un grupo de tejer en Sevilla';
+        $proposal3->title = 'Celebramos 10 años tejiendo';
         $proposal3->collab_start_date = '2024-10-19';
         $proposal3->description = 'Nos gustaría celebrar nuestro 10 aniversario con una celebración en un bar o centro civico de Sevilla y pensamos que puede ser una oportunidad de invitar negocios de lana, mercerias, otros grupos de actividades como tejer, coser etc y atraer nuevos miembros al grupo';
         $proposal3->collab_end_date = '2024-10-20';
@@ -201,7 +201,7 @@ class ProposalSeeder extends Seeder
         $proposal3->compensation_amount = null;
         $proposal3->cost = null;
         $proposal3->objectives = 'Promover nuestro grupo y la actividad de tejer';
-        $proposal3->ideal_collaborators = 'Un bar o centro civico, tiendas y marcas de lana, tela, negocios de alimentación y bebidas';
+        $proposal3->ideal_collaborators = 'Un bar o centro civico, tiendas y marcas de lana, tela, negocios de alimentación y bebidas en Sevilla y los alrededores';
         $proposal3->proposal = 'Podemos ofrecer nuestro grupo, familias y amigos para ayudar en la organización y promoción del evento, y tenemos un presupuesto limitado para pagar algo de la comida y alquilar de espacio';
         $proposal3->responsibility = null;
         $proposal3->planning = null;
@@ -225,10 +225,10 @@ class ProposalSeeder extends Seeder
         $proposal4->brand = 'FRUUT';
         $proposal4->image = "http://localhost:8000/img/fruut-bars.jpg";
         // $proposal4->category_id = ;
-        $proposal4->title = 'Product placement de FRUUT, barras energéticas hechas completamente de fruta';
+        $proposal4->title = 'FRUUT barras energéticas';
         $proposal4->collab_start_date = '2024-01-01';
         $proposal4->collab_end_date = '2024-12-31';
-        $proposal4->description = 'Para promover nuestras ricas barras energéticas queremos colaborar con tiendas de productos naturales y estudios de deporte, baile, yoga por todo España';
+        $proposal4->description = 'Queremos colaborar con tiendas de productos naturales y estudios de deporte, baile, yoga y tal por todo España, para promover nuestras ricas barras energéticas al mundo saludable';
         $proposal4->collab_type = 'Co-Marketing' ;
         $proposal4->duration = 'Largo plazo';
         $proposal4->compensation = 'Descuento';
@@ -259,7 +259,7 @@ class ProposalSeeder extends Seeder
         $proposal5->brand = 'Zzapas';
         $proposal5->image = "http://localhost:8000/img/sports-shoes.jpg";
         // $proposal5->category_id = ;
-        $proposal5->title = 'Innovación para el corredor conectado con Zzapas';
+        $proposal5->title = 'Innovación tech con Zzapas';
         $proposal5->description = 'Desarollamos un producto que permite a los corredores hacer un seguimiento de sus entrenamientos usando Zzapas equipados con un sensor y un dispositivo technológico';
         $proposal5->collab_start_date = '2023-12-31';
         $proposal5->collab_end_date = '2025-01-01';
@@ -286,6 +286,40 @@ class ProposalSeeder extends Seeder
         $proposal5->send_notification = true;
 
         $proposal5->save();
+
+        $proposal8 = new CollaborationProposal();
+
+        $proposal8->user_id = '4';
+        $proposal8->brand = 'EvokeX';
+        $proposal8->image = "http://localhost:8000/img/perfume.jpg";
+        // $proposal8->category_id = ;
+        $proposal8->title = 'Lanzamos nueva colonia unisex';
+        $proposal8->description = 'Lanzamos una nueva colonia unisex y queremos marcar el evento con fiestas chic por todo de España, exclusivo y cool con un enfoque en los sentidos, como cosas tactiles, olores, música etc';
+        $proposal8->collab_start_date = '2024-11-01';
+        $proposal8->collab_end_date = '2024-12-15';
+        $proposal8->collab_type = 'Co-Event';
+        $proposal8->duration = 'Puntual';
+        $proposal8->compensation = null;
+        $proposal8->compensation_amount = null;
+        $proposal8->cost = null;
+        $proposal8->objectives = 'Promover EvokeX';
+        $proposal8->ideal_collaborators = 'Bares hip, marcas de alcohol, organizaciones con un enfoque en cosas tactiles, como empresas con telas, plumas, música y sonidos';
+        $proposal8->proposal = 'Influencers, redes sociales';
+        $proposal8->responsibility = null;
+        $proposal8->planning = null;
+        $proposal8->operations_and_sales = null;
+        $proposal8->marketing = null;
+        $proposal8->economic_agreements = null;
+        $proposal8->terms_and_conditions = null;
+        $proposal8->observations = null;
+        $proposal8->public_or_private = 'Público';
+        $proposal8->collab_limit = false;
+        $proposal8->limit = null;
+        $proposal8->ad_start_date = '2024-01-01';
+        $proposal8->ad_end_date = '2024-12-01';
+        $proposal8->send_notification = true;
+
+        $proposal8->save();
 
         
     }

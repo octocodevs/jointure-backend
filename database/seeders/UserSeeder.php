@@ -59,13 +59,13 @@ class UserSeeder extends Seeder
         $user3 = new User();
         
         $user3->id = '4';
-        $user3->name = 'Marisol Serrat';
+        $user3->name = 'Marisol Analia Serrat';
         $user3->email = 'marisol@email.com';
         $user3->password = '12345678';
         $user3->position = 'Creadora';
         $user3->profile_type = 'empresa';
         $user3->country = 'España';
-        $user3->business_name = 'Marisol Cosmetics';       
+        $user3->business_name = 'MAS Cosmetica';       
         $user3->subscription_type = 'basic';
 
         $user3->save();
