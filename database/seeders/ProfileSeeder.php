@@ -46,12 +46,12 @@ class ProfileSeeder extends Seeder
         $profile1 = new Profile();
 
         $profile1->user_id = '6';
-        $profile1->image = "http://localhost:8000/img/fruut-bars-logo.jpg";
+        $profile1->image = "http://localhost:8000/img/fruut-logo.jpg";
         $profile1->CIF = 'A12345678';
         $profile1->legal_structure = 'Sociedad Limitada (S. L.)';
         $profile1->phone_number = '12345688';
         $profile1->email_contact = 'holafruut@mail.com';
-        $profile1->sector = 'Alimentación y bebidas';
+        $profile1->sector = 'Salud';
         $profile1->activity = null;
         $profile1->offer = null;
         $profile1->values = null;
@@ -167,7 +167,7 @@ class ProfileSeeder extends Seeder
         $profile5->legal_structure = 'Comunidad de bienes';
         $profile5->phone_number = '252545555';
         $profile5->email_contact = 'lupe@mail.com';
-        $profile5->sector = 'Sin ánimo de lucro';
+        $profile5->sector = 'Non-profit';
         $profile5->activity = null;
         $profile5->offer = null;
         $profile5->values = 'Tejer es para todos';
@@ -196,7 +196,7 @@ class ProfileSeeder extends Seeder
         $profile6->legal_structure = 'Sociedad Limitada (S. L.)';
         $profile6->phone_number = '748475748';
         $profile6->email_contact = 'zzapas@mail.com';
-        $profile6->sector = 'Moda';
+        $profile6->sector = 'Deporte';
         $profile6->activity = null;
         $profile6->offer = null;
         $profile6->values = null;
@@ -225,7 +225,7 @@ class ProfileSeeder extends Seeder
         $profile7->legal_structure = 'Sociedad Anónima (S. A.)';
         $profile7->phone_number = '3455888745';
         $profile7->email_contact = 'cakery@mail.com';
-        $profile7->sector = 'Alimentación y bebidas';
+        $profile7->sector = 'Alimentación';
         $profile7->activity = null;
         $profile7->offer = null;
         $profile7->values = 'Pasteles de lujo para una experiencia inolvidable';
