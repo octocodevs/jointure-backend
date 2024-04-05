@@ -189,7 +189,7 @@ class ProposalSeeder extends Seeder
 
         $proposal3->user_id = 5;
         $proposal3->brand = 'Las Amigas del Punto';
-        $proposal3->image = "http://localhost:8000/knitting.jpg";
+        $proposal3->image = "http://localhost:8000/img/knitting.jpg";
         // $proposal3->category_id = ;
         $proposal3->title = 'Celebramos 10 años tejiendo';
         $proposal3->collab_start_date = '2024-10-19';
@@ -257,7 +257,7 @@ class ProposalSeeder extends Seeder
 
         $proposal5->user_id = '7';
         $proposal5->brand = 'Zzapas';
-        $proposal5->image = "http://localhost:8000/img/sports-shoes.jpg";
+        $proposal5->image = "http://localhost:8000/img/zzapas-runner.jpg";
         // $proposal5->category_id = ;
         $proposal5->title = 'Innovación tech con Zzapas';
         $proposal5->description = 'Desarollamos un producto que permite a los corredores hacer un seguimiento de sus entrenamientos usando Zzapas equipados con un sensor y un dispositivo technológico';
@@ -293,7 +293,7 @@ class ProposalSeeder extends Seeder
         $proposal8->brand = 'EvokeX';
         $proposal8->image = "http://localhost:8000/img/perfume.jpg";
         // $proposal8->category_id = ;
-        $proposal8->title = 'Lanzamos nueva colonia unisex';
+        $proposal8->title = 'Nueva colonia unisex';
         $proposal8->description = 'Lanzamos una nueva colonia unisex y queremos marcar el evento con fiestas chic por todo de España, exclusivo y cool con un enfoque en los sentidos, como cosas tactiles, olores, música etc';
         $proposal8->collab_start_date = '2024-11-01';
         $proposal8->collab_end_date = '2024-12-15';
