@@ -4,6 +4,8 @@
 
 Jointure is a platform that automates collaborations between brands from various sectors, facilitating seamless interactions and partnerships. This README provides an overview of the project's structure, technologies used, features, installation instructions, and contribution details.
 
+![Jointure marketplace](./public/img/marketplace2.png)
+
 ## 📌 Requirements
 - Visual Studio Code
 - Node.js installed on the computer
