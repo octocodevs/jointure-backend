@@ -63,7 +63,7 @@ class CollaborationProposal extends Model
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'collab_start_date' => 'nullable|date',
         'collab_end_date' => 'nullable|date|after_or_equal:collab_start_date',
-        'collab_type' => 'required|string|in:Co-Branding,Co-Licensing,Co-Supply,Co-Stand,Co-Marketing,Co-Event',
+        'collab_type' => 'required|string|in:Co-Branding,Co-Licensing,Co-Supply,Co-Stand,Co-Marketing,Co-Event, Otro',
         'duration' => 'nullable|string|in:puntual,periódica,largo plazo',
         'compensation' => 'nullable|string|max:255',
         'compensation_amount' => 'nullable|numeric|min:0',
