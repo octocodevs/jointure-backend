@@ -4,15 +4,18 @@ use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\CollaborationProposal;
 use Database\Seeders\ProposalSeeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\ProfileSeeder;
+use Database\Seeders\CategorySeeder;
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $users = \App\Models\User::factory(5)->create();
+        // $users = \App\Models\User::factory(5)->create();
 
-        foreach ($users as $user) {
-            \App\Models\Profile::factory()->create(['user_id' => $user->id]);
-        }
+        // foreach ($users as $user) {
+        //     \App\Models\Profile::factory()->create(['user_id' => $user->id]);
+        // }
 
         // $categories = [
         //     'Co-Branding' => ['Experiencia', 'Personalidad', 'Oportunidad'],
@@ -32,8 +35,10 @@ class DatabaseSeeder extends Seeder
         // }
 
         // Crear colaboraciones
-        CollaborationProposal::factory(15)->create();
-
+        //CollaborationProposal::factory(15)->create();
+        $this ->call(UserSeeder::class);
+        $this ->call(ProfileSeeder::class);
+        $this ->call(CategorySeeder::class);
         $this ->call(ProposalSeeder::class);
     }
 }
