@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\CollaborationProposal;
+use Database\Seeders\ProposalSeeder;
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
@@ -33,5 +34,6 @@ class DatabaseSeeder extends Seeder
         // Crear colaboraciones
         CollaborationProposal::factory(15)->create();
 
+        $this ->call(ProposalSeeder::class);
     }
 }

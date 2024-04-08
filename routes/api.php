@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CollaborationParticipationController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\CollaborationProposalController;
+use App\Http\Controllers\Api\UserCollaborationRequestController;
 use App\Http\Controllers\Api\UserController;
+use App\Models\CollaborationProposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +38,30 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [ProfileController::class, 'storeOrUpdate'])->name('profile.storeOrUpdate');
     Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/users/update', [UserController::class, 'update'])->name('users.update');
+
     Route::post('/collaboration-proposals', [CollaborationProposalController::class, 'store'])->name('collaboration.store');
     Route::post('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'update'])->name('collaboration.update');
     Route::delete('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'destroy'])->name('collaboration.destroy');
+    Route::get('/my-collaboration-proposals', [CollaborationProposalController::class, 'getMyCollaborationProposals'])->name('collaboration.getMyCollaborationProposals');
+
+    Route::get('my-participations', [CollaborationParticipationController ::class, 'index']);
+    Route::post('my-participations/{id}', [CollaborationParticipationController::class, 'joinCollaboration']);
+    Route::delete('my-participations/{id}', [CollaborationParticipationController::class, 'leaveCollaboration']);
+
+    Route::get('my-participations/{status}', [CollaborationParticipationController::class, 'filterByStatus']);
+    //Route::post('my-participations-status/{id}', [CollaborationParticipationController::class, 'update']);
+
+    Route::get('my-collaboration-requests', [UserCollaborationRequestController::class, 'index']);
+    //  actualiza el estado de una solicitud de participación
+    Route::post('my-collaboration-requests/{id}', [UserCollaborationRequestController::class, 'updateStatusRequest']);
+    Route::get('my-collaboration-requests/{collaborationId}', [UserCollaborationRequestController::class, 'showCollaborationRequests']);
+
+    // muestra mi estado de solicitud de participación específica
+    // Route::get('my-collaboration-requests/{id}', [UserCollaborationRequestController::class, 'show']);
+
+
+    //COLABORACIONES PROPIAMENTE DICHAS
+    Route::get('/collaborations', [CollaborationProposalController::class, 'collaborationWithParticipants']);
 });
 
 Route::get('profile', [ProfileController::class, 'show']); //muestra todos los perfiles
@@ -47,12 +72,3 @@ Route::get('collaboration-proposals', [CollaborationProposalController::class, '
 Route::get('collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'show']);
 
 
-// Route::get('categories', [CategoryController::class, 'index']);
-
-// Route::prefix('categories')->group(function () {
-//     Route::get('/', [CategoryController::class, 'index']);
-//     Route::post('/', [CategoryController::class, 'store']);
-//     Route::get('/{category}', [CategoryController::class, 'show']);
-//     Route::put('/{category}', [CategoryController::class, 'update']);
-//     Route::delete('/{category}', [CategoryController::class, 'destroy']);
-// })

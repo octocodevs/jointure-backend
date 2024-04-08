@@ -12,12 +12,17 @@ class ProfileController extends Controller
 
     public function show(Request $request)
     {
-        // $user = $request->user();
-        // if (!$user) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
-        // $profile = $user->profile()->first();
-        $profile = Profile::all(); // Obtener todos los perfiles disponibles
+        $profiles = Profile::with(['user:id,business_name,country'])->get();
+        return response()->json($profiles, 200);
+    }
+
+
+    public function getById($user_id)
+    {
+        $profile = Profile::with(['user:id,business_name,country'])->where('user_id', $user_id)->first();
+        if(!$profile){
+            return response()->json(['error' => 'Profile not found'], 404);
+        }
         return response()->json($profile, 200);
     }
 
@@ -34,18 +39,28 @@ class ProfileController extends Controller
     try {
         $profileData = $request->only([
 
-            'CIF',
-            'legal_structure',
-            'sector',
-            'activity',
-            'offer',
-            'values',
-            'business_size',
-            'market',
-            'clients',
-            'sales_channels',
-            'description',
-        ]);
+                'CIF',
+                'legal_structure',
+                'phone_number',
+                'email_contact',
+                'sector',
+                'activity',
+                'offer',
+                'values',
+                'business_size',
+                'market',
+                'clients',
+                'sales_channels',
+                'description',
+                'social_networks_instagram',
+                'social_networks_linkedin',
+                'social_networks_x',
+                'social_networks_facebook',
+                'social_networks_tiktok',
+                'social_networks_spotify',
+                'social_networks_youtube',
+                'social_networks_pinterest',
+            ]);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
