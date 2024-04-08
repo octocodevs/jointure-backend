@@ -18,10 +18,12 @@ class ProfileControllerTest extends TestCase
 
         $response = $this->actingAs($user)->json('GET', '/api/profile');
 
+        //dd($response->content());
+
         $response->assertStatus(200)
-                 ->assertJsonStructure([
-                     [
-                        
+                 ->assert([
+                    '*' =>[
+                        "user_id",
                         'image',
                         'CIF',
                         'legal_structure',
@@ -34,15 +36,18 @@ class ProfileControllerTest extends TestCase
                         'clients',
                         'sales_channels',
                         'description',
-                        'social_network_linkedin',
-                        'social_network_instagram',
-                        'social_network_x',
-                        'social_network_tiktok',
+                        'social_networks_linkedin',
+                        'social_networks_instagram',
+                        'social_networks_x',
+                        'social_networks_tiktok',
                         'user' => [
                             'id' => $user->id,
                             'business_name' => $user->business_name,
                             'country' => $user->country,
-                            ]
-                 ]]);
+                            ]]
+                 ]);
     }
+
+    
+    
 }
