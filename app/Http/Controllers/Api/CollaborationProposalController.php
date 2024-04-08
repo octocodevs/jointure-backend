@@ -38,7 +38,7 @@ class CollaborationProposalController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imagePath = $image->store('collaboration_images');
+            $imagePath = $image->store('collaboration_images', 'public');
             $requestData['image'] = $imagePath;
         }
 
@@ -90,7 +90,7 @@ class CollaborationProposalController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imagePath = $image->store('collaboration_images');
+            $imagePath = $image->store('collaboration_images', 'public');
             $requestData['image'] = $imagePath;
 
             if ($collaborationProposal->image) {
