@@ -6,8 +6,10 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\CollaborationProposalController;
 use App\Http\Controllers\Api\UserCollaborationRequestController;
 use App\Http\Controllers\Api\UserController;
+use App\Models\CollaborationProposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/collaboration-proposals', [CollaborationProposalController::class, 'store'])->name('collaboration.store');
     Route::post('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'update'])->name('collaboration.update');
     Route::delete('/collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'destroy'])->name('collaboration.destroy');
+    Route::get('/my-collaboration-proposals', [CollaborationProposalController::class, 'getMyCollaborationProposals'])->name('collaboration.getMyCollaborationProposals');
 
     Route::get('my-participations', [CollaborationParticipationController ::class, 'index']);
     Route::post('my-participations/{id}', [CollaborationParticipationController::class, 'joinCollaboration']);
@@ -50,10 +53,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('my-collaboration-requests', [UserCollaborationRequestController::class, 'index']);
     //  actualiza el estado de una solicitud de participación
-    Route::post('my-collaboration-requests/{id}', [UserCollaborationRequestController::class, 'update']);
+    Route::post('my-collaboration-requests/{id}', [UserCollaborationRequestController::class, 'updateStatusRequest']);
+    Route::get('my-collaboration-requests/{collaborationId}', [UserCollaborationRequestController::class, 'showCollaborationRequests']);
 
-    // muestra una solicitud de participación específica
-    Route::get('my-collaboration-requests/{id}', [UserCollaborationRequestController::class, 'show']);
+    // muestra mi estado de solicitud de participación específica
+    // Route::get('my-collaboration-requests/{id}', [UserCollaborationRequestController::class, 'show']);
+
+
+    //COLABORACIONES PROPIAMENTE DICHAS
+    Route::get('/collaborations', [CollaborationProposalController::class, 'collaborationWithParticipants']);
 });
 
 Route::get('profile', [ProfileController::class, 'show']); //muestra todos los perfiles
