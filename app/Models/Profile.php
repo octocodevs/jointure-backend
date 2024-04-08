@@ -64,7 +64,7 @@ class Profile extends Model
         'business_size' => 'required|in: micro empresa, pequeña empresa, mediana empresa, gran empresa',
         'market' => 'nullable|in:Local,Comarcal,Provincial,Autonómico,Nacional,Internacional',
         'clients' => 'required|in:B2B,B2C,B2B y B2C',
-        'sales_channel' => 'required|in:online,offline',
+        'sales_channel' => 'required|in:online,offline,ambos',
         'description' => 'nullable|string|max:500',
         'social_networks_instagram'=> 'nullable|string|max:255',
         'social_networks_linkedin'=> 'nullable|string|max:255',
