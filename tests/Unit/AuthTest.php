@@ -88,7 +88,20 @@ class AuthTest extends TestCase
 
     public function test_user_can_logout():void 
     {
-        $user = User::factory()->create();
+        $userData = [
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => 'password',
+            ];
+        $user = User::create([
+            'name' => '',
+            'email' => $userData['email'],
+            'password' => Hash::make($userData['password']),
+            'position' => '',
+            'profile_type' => 'empresa',
+            'country' => "Country",
+            'business_name' => '"Business"',
+            'subscription_type' => 'basic'
+        ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
     
