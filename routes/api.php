@@ -62,7 +62,7 @@ Route::get('profile/{user_id}', [ProfileController::class, 'getById']); // perfi
 //se supone que el dia de mañana , deben estar loguin los usuarios para ver y acceder a propuesta de colaboracion...
 Route::get('collaboration-proposals', [CollaborationProposalController::class, 'index']);//muestra todas las colaboraciones.
 Route::get('collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'show']);
-Route::get('search-proposal', [ProfileController::class,'searchProposal']);
+Route::get('search-proposal', [CollaborationProposalController::class,'searchProposal']);
 
 
 // Route::get('categories', [CategoryController::class, 'index']);
