@@ -46,12 +46,17 @@ class AuthController extends Controller
     {
         $request->validate(['email'=>'required|email','password'=>'required']);
         $user = User::where('email',$request-> email)->first();
-        if(!$user){return response()->json(['message' => 'Unauthorized'], 401);}
+        
+        if(!$user){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         if(Auth::attempt($request->only('email','password'))){
             $user = Auth::user();
             $token = $user->createToken('auth_token')->plainTextToken;
             return response()->json(['user' =>$user, 'access_token'=> $token, 'success' =>true,'message' => 'User logged in successfully'], 200);
         }
+        return response()->json(['message' => 'Validation failed - email or password incorrect'] ,403);
     }
 
     public function logout(Request $request): JsonResponse
