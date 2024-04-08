@@ -72,12 +72,3 @@ Route::get('collaboration-proposals', [CollaborationProposalController::class, '
 Route::get('collaboration-proposals/{collab_id}', [CollaborationProposalController::class, 'show']);
 
 
-// Route::get('categories', [CategoryController::class, 'index']);
-
-// Route::prefix('categories')->group(function () {
-//     Route::get('/', [CategoryController::class, 'index']);
-//     Route::post('/', [CategoryController::class, 'store']);
-//     Route::get('/{category}', [CategoryController::class, 'show']);
-//     Route::put('/{category}', [CategoryController::class, 'update']);
-//     Route::delete('/{category}', [CategoryController::class, 'destroy']);
-// })
