@@ -130,4 +130,28 @@ class CollaborationProposalController extends Controller
             'message' => 'Collaboration Proposal deleted successfully'
         ], 200);
     }
+
+    public function searchProposal(Request $request)
+    {
+        $request->validate([
+            'search' => 'required|string|min:3'
+        ]);
+
+        $searchTerm = '%' . $request->input('search') . '%';
+
+        $proposals = CollaborationProposal::where(function ($query) use ($searchTerm) {
+        $query->where('brand', 'like', $searchTerm)
+            ->orWhere('title', 'like', $searchTerm)
+            ->orWhere('description', 'like', $searchTerm)
+            ->orWhere('collab_type', 'like', $searchTerm)
+            ->orWhere('objectives', 'like', $searchTerm)
+            ->orWhere('proposal', 'like', $searchTerm);
+    })
+        ->get();
+
+        if ($proposals->isEmpty()) {
+            return  response()->json(['message' => 'No hay resultados que coincidan con su búsqueda'], 404);
+        }
+        return response()->json($proposals);
+    }
 }
