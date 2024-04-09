@@ -141,8 +141,10 @@ class CollaborationProposalController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $myProposals = CollaborationProposal::where('user_id', $user->id)
-            ->get();
+        $myProposals = CollaborationProposal::with('user.profile')
+        ->where('user_id', $user->id)
+        ->get();
+
 
         return response()->json(['data' => $myProposals], 200);
     }
@@ -161,31 +163,6 @@ class CollaborationProposalController extends Controller
         return response()->json(['data' => $collaborations], 200);
     }
 
-    // Controlador CollaborationProposalController
-    // public function handleCollaborationRequest(Request $request, $collaborationId, $requestId, $status)
-    // {
-    //     $user = $request->user();
-    //     $collaborationProposal = CollaborationProposal::findOrFail($collaborationId);
-
-    //     // Verificar si el usuario actual es el creador de la propuesta
-    //     if ($user->id !== $collaborationProposal->user_id) {
-    //         return response()->json(['error' => 'Unauthorized'], 401);
-    //     }
-
-    //     $userCollaborationRequest = UserCollaborationRequest::findOrFail($requestId);
-    //     $userCollaborationRequest->update(['status' => $status]);
-
-    //     // Si se acepta la solicitud, se crea una entrada en CollaborationParticipation
-    //     if ($status === 'accepted') {
-    //         CollaborationParticipation::create([
-    //             'user_id' => $userCollaborationRequest->user_id,
-    //             'collaboration_id' => $collaborationId,
-    //             'status' => 'accepted', // O cualquier otro estado predeterminado
-    //         ]);
-    //     }
-
-    //     return response()->json(['message' => 'Request status updated successfully'], 200);
-    // }
 
     public function searchProposal(Request $request)
     {
