@@ -20,6 +20,8 @@ class ProfileFactory extends Factory
             'image' => $this->faker->optional()->imageUrl(),
             'CIF' => $this->generateCIF(),
             'legal_structure' => $this->faker->randomElement(['Autónomo', 'Comunidad de bienes', 'Sociedad Limitada (S. L.)', 'Sociedad Limitada Laboral (S. L. L.)', 'Sociedad Anónima (S. A.)', 'Sociedad Anónima Laboral (SAL)', 'Sociedad Limitada Nueva Empresa (S. L. N. E.)']),
+            'phone_number' => $this->faker->phoneNumber(),
+            'email_contact' => $this->faker->email(),
             'sector' => $this->faker->randomElement(['Alimentación y bebidas', 'Viajes', 'Familia', 'Entretenimiento', 'Belleza', 'Educación', 'Salud', 'Tecnología', 'Música', 'Hogar', 'Horeca', 'Mascotas', 'Deportes', 'Arte y cultura', 'Motor', 'Moda', 'Sin ánimo de lucro', 'Retail', 'Juguetes', 'Mobiliario', 'Servicios profesionales', 'Otros']),
             'activity' => $this->faker->optional()->realText(255), 
             'offer' => $this->faker->optional()->realText(255), 

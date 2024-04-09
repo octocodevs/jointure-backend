@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('CIF');
             $table->string('legal_structure');
+            $table->string('phone_number');
+            $table->string('email_contact');
             $table->string('sector');
             $table->string('activity')->nullable();
             $table->string('offer')->nullable();

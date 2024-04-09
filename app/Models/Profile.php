@@ -13,6 +13,8 @@ class Profile extends Model
         'image',
         'CIF',
         'legal_structure',
+        'phone_number',
+        'email_contact',
         'sector',
         'activity',
         'offer',
