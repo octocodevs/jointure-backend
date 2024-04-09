@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
-use App\Models\CollaborationProposal;
 use Database\Seeders\ProposalSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\ProfileSeeder;
