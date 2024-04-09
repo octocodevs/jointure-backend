@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 // use Illuminate\Support\Str;
@@ -46,7 +47,7 @@ class AuthController extends Controller
     {
         $request->validate(['email'=>'required|email','password'=>'required']);
         $user = User::where('email',$request-> email)->first();
-        
+
         if(!$user){
             return response()->json(['message' => 'Unauthorized'], 401);
         }
@@ -63,9 +64,9 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json([
-            'message' => 'Session closed successfully.'
-        ], 201);
+        return response()
+            ->json(['message' => 'Logout successful'])
+            ->withCookie(Cookie::forget('laravel_session'));
     }
 }
 
