@@ -16,11 +16,11 @@ return new class extends Migration
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->primary();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('CIF');
             $table->string('legal_structure');
-            $table->string('phone_number')->nullable();
-            $table->string('email_contact')->nullable();
+            $table->string('phone_number');
+            $table->string('email_contact');
             $table->string('sector');
             $table->string('activity')->nullable();
             $table->string('offer')->nullable();

@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
@@ -29,7 +27,7 @@ class ProfileController extends Controller
     }
 
 
-    public function storeOrUpdate(Request $request): JsonResponse
+    public function storeOrUpdate(Request $request):JsonResponse
     {
         $user = $request->user();
         if (!$user) {
@@ -38,8 +36,8 @@ class ProfileController extends Controller
 
         $rules = Profile::$rules;
 
-        try {
-            $profileData = $request->only([
+    try {
+        $profileData = $request->only([
 
                 'CIF',
                 'legal_structure',
@@ -64,37 +62,35 @@ class ProfileController extends Controller
                 'social_networks_pinterest',
             ]);
 
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $path = $image->store('profile_images', 'public');
-                $profileData['image'] = $path;
-            }
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->store('profile_images', 'public');
+            $profileData['image'] = $path;
+        }
 
-            $profile = $user->profile;
+        $profile = $user->profile;
 
-            if ($user->profile()->exists()) {
+        if ($user->profile()->exists()) {
 
-                $user->profile()->update($profileData);
-            } else {
+            $user->profile()->update($profileData);
+        } else {
 
-                $user->profile()->create($profileData);
-            }
-            return response()->json(
-                [
-                    'data' => $profileData,
-                    'success' => true,
-                    'message' => 'Profile saved/updated successfully'
-                ],
-                200
-            );
+            $user->profile()->create($profileData);
+        }
+        return response()->json([
+            'data' =>$profileData,
+            'success' =>true,
+            'message' => 'Profile saved/updated successfully'
+        ],
+            200);
         } catch (ValidationException $e) {
-
+            // Manejar los errores de validación
             return response()->json(['errors' => $e->errors()], 422);
         }
     }
 
 
-    public function destroy()
+    public function destroy($id)
     {
         try {
             $user = auth()->user();
@@ -109,10 +105,11 @@ class ProfileController extends Controller
             }
 
             $profile->delete();
-
-            return response()->json(['message' => 'Profile deleted successfully'], 200);
+    
+            return response()->json(['message' => 'Se ha eliminado el perfil'], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Error: '. $e->getMessage()], 500);
-        }
+        
+            return response()->json(['message' => 'Ha ocurrido un error al intentar eliminar el perfil'], 500);
+        };
     }
 }
