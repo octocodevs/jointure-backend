@@ -12,14 +12,19 @@ Jointure is a platform that automates collaborations between brands from various
 - [Technologies](#technologies)
 - [Backend File Structure](#backend-file-structure)
 - [Features](#features)
+- [Database Diagram](#database-diagram)
 - [Installation](#installation)
+- [API Doc](#api-doc)
 - [Running Tests](#running-tests)
 - [Demo](#demo)
 - [Developers](#developers)
 
 ## Requirements
+
 - Visual Studio Code
-- Node.js, Composer, and xampp or mamp installed on your device
+- Node.js 
+- Composer
+- Xampp or mamp
 
 ## Technologies:
 
@@ -61,6 +66,12 @@ Jointure is a platform that automates collaborations between brands from various
 - **Profile:** Each user has a business profile that can be modified.
 - **Collaboration Proposals:** Users can create, edit, delete their proposals.
 - **Collaborations:** Users can apply and participate to proposals.
+
+## Database Diagram:
+
+This data base diagram shows that there is a one to many relationship as single users can create an unlimited number of proposals to collaborate. The primary keys of the users, profiles, and proposals tables are their ids while the foreign key "user_id" on profiles, proposals, and collaborations connect all these tables, ensuring that the user's id is attached to everything they create, identifying them as the only ones able to edit or delete their profile and proposals.  
+
+![Jointure database diagram](./public/img/database-diagram.png)
 
 
 ## Installation
@@ -116,7 +127,9 @@ To run tests, run the following command
    ```
 
 ## Demo
-
+![Login](./public/img/login.png)
+![Marketplace view](./public/img/marketplace.png)
+![Profile](./public/img/profile.png)
 
 
 
@@ -131,3 +144,7 @@ To run tests, run the following command
 [Carolina Delfa](https://www.linkedin.com/in/carolina-delfa-silvestre/) <br>
 [Gabriela Irimia](https://www.linkedin.com/in/gabriela-irimia/) <br>
 
+
+---
+
+Back to: [Table of Contents](#table-of-contents)
