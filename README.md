@@ -101,16 +101,10 @@ To install this repository on your computer, follow these steps:
     ```
 5. Create and seed your database 
     ```bash
-    php artisan db:seed --class=UserSeeder
-    ```
-   ```bash
-    php artisan db:seed --class=ProfileSeeder
-    ```
-    ```bash
-    php artisan db:seed --class=ProposalSeeder
+    php artisan db:fresh --seed
     ```
    
->
+   
 > ## API DOC
 Here is the link to the documentation of the API. You may use Postman application to check the functions
 
