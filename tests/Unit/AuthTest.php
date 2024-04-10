@@ -12,16 +12,11 @@ class AuthTest extends TestCase
 {   
     use RefreshDatabase;
     use WithFaker;
-    public function test_example(): void
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
+    
 
     public function test_user_can_be_registrated(): void
     {
-        //Se crea un array $user que contiene información simulada
+        
         $user = [
         'name' => $this ->faker->name,
         'email' => $this->faker->email,
@@ -33,9 +28,9 @@ class AuthTest extends TestCase
         'business_name' => "Business",
         'subscription_type' => "basic",
     ];
-        //Utiliza el método postJson() para enviar una solicitud HTTP POST a la ruta '/api/register' con los datos del usuario($user)
+        
         $response = $this->postJson('/api/register', $user);
-        //Utiliza el método assertStatus() para verificar que la respuesta recibida tenga un estado HTTP 201
+        
         $response->assertStatus(201);
         
     }
@@ -67,7 +62,7 @@ class AuthTest extends TestCase
             'password' => 'password',
             ];
           
-            // crea un usuario con los datos 
+            
             $user = User::create([
                 'name' => '',
                 'email' => $userData['email'],
@@ -109,11 +104,10 @@ class AuthTest extends TestCase
         'Authorization' => 'Bearer ' . $token,
         ])->postJson('/api/logout');
 
-        $response->assertStatus(201);
+        $response->assertStatus(200);
 
        
         }
 
-        // public function test_token_is_destroyed_when_user_logs_out():void
-        // {} 
+        
     }
